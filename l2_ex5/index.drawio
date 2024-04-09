@@ -55,6 +55,9 @@
                 <mxCell id="29" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="27" target="7">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
+                <mxCell id="34" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="27" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
                 <mxCell id="27" value="registro" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="390" y="310" width="120" height="60" as="geometry"/>
                 </mxCell>
@@ -69,6 +72,12 @@
                 </mxCell>
                 <mxCell id="33" value="*" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
                     <mxGeometry x="490" y="310" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="1" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="430" y="200" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="*" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="430" y="280" width="60" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
