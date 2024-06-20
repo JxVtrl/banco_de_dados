@@ -1,17 +1,17 @@
-const uf = require('../models/ufModel');
+const tipoRegiao = require('../models/tipoRegiaoModel');
 
-class ufController {
+class tipoRegiaoController {
     
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('uf').countDocuments();
+            const contador = await client.db('test_db').collection('tipoRegiao').countDocuments();
     
             console.log(contador);
             if(contador > 1) {
-                res.status(201).send(`${contador} estados catalogados.`)
+                res.status(201).send(`${contador} tipos de regiões catalogados.`)
             } else {
-                res.status(201).send(`${contador} estado catalogado.`)
+                res.status(201).send(`${contador} tipo de região catalogado.`)
             }
     
         }
@@ -24,13 +24,13 @@ class ufController {
         try {
             const { nome } = req.body;
     
-            const uf = await client.db('test_db').collection('uf').findOne({ 'nome': nome });
+            const tipoRegiao = await client.db('test_db').collection('tipoRegiao').findOne({ 'nome': nome });
     
-            if(!uf) {
+            if(!tipoRegiao) {
                 console.log(`Objeto ${nome} não encontrado!`);
                 res.status(201).send(`Objeto ${nome} não encontrado!`)
             } else {
-                console.log(uf);
+                console.log(tipoRegiao);
                 res.status(201).send(
                     `Objeto ${nome} encontrado!`
                 )
@@ -44,13 +44,13 @@ class ufController {
 
     async addOne( req, res, client ) {
         try {
-            const { codUf, nome } = req.body;
-            const newUf = new uf({ codUf, nome });
-            const response = await client.db('test_db').collection('uf').insertOne(newUf);
+            const { codTipoRegiao, nome } = req.body;
+            const newTipoRegiao = new tipoRegiao ({ codTipoRegiao , nome });
+            const response = await client.db('test_db').collection('tipoRegiao').insertOne(newTipoRegiao);
 
             // console.log(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
             console.log(response)
-            res.status(200).send(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
+            res.status(200).send(`Objeto adicionado ao banco de dados tipoRegiao!`);
         }
         catch {
             (err) => console.log(err);
@@ -58,4 +58,4 @@ class ufController {
     }
 }
 
-module.exports = new ufController();
+module.exports = new tipoRegiaoController();

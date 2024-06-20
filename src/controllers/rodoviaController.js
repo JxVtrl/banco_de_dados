@@ -1,17 +1,17 @@
-const uf = require('../models/ufModel');
+const rodovia = require('../models/rodoviaModel');
 
-class ufController {
+class rodoviaController {
     
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('uf').countDocuments();
+            const contador = await client.db('test_db').collection('rodovia').countDocuments();
     
             console.log(contador);
             if(contador > 1) {
-                res.status(201).send(`${contador} estados catalogados.`)
+                res.status(201).send(`${contador} rodovias catalogados.`)
             } else {
-                res.status(201).send(`${contador} estado catalogado.`)
+                res.status(201).send(`${contador} rodovias catalogado.`)
             }
     
         }
@@ -24,13 +24,13 @@ class ufController {
         try {
             const { nome } = req.body;
     
-            const uf = await client.db('test_db').collection('uf').findOne({ 'nome': nome });
+            const rodovia = await client.db('test_db').collection('rodovia').findOne({ 'nome': nome });
     
-            if(!uf) {
+            if(!rodovia) {
                 console.log(`Objeto ${nome} não encontrado!`);
                 res.status(201).send(`Objeto ${nome} não encontrado!`)
             } else {
-                console.log(uf);
+                console.log(rodovia);
                 res.status(201).send(
                     `Objeto ${nome} encontrado!`
                 )
@@ -44,13 +44,11 @@ class ufController {
 
     async addOne( req, res, client ) {
         try {
-            const { codUf, nome } = req.body;
-            const newUf = new uf({ codUf, nome });
-            const response = await client.db('test_db').collection('uf').insertOne(newUf);
-
-            // console.log(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
+            const { codRodovia, nome } = req.body;
+            const newRodovia = new rodovia({ codRodovia, nome });
+            const response = await client.db('test_db').collection('rodovia').insertOne(newRodovia);
             console.log(response)
-            res.status(200).send(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
+            res.status(200).send(`Objeto adicionado ao banco de dados rodovia!`);
         }
         catch {
             (err) => console.log(err);
@@ -58,4 +56,4 @@ class ufController {
     }
 }
 
-module.exports = new ufController();
+module.exports = new rodoviaController();
