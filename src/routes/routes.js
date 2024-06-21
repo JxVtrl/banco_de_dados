@@ -8,6 +8,7 @@ const classeTaxonomicaController = require('../controllers/classeTaxController')
 const situacaoFinalAnimalController = require('../controllers/situFinalAnimalController');
 const tipoPavimentoController = require('../controllers/tipoPavimentoController');
 const especieController = require('../controllers/especieController');
+const categoriaController = require('../controllers/categoriaController');
 const categoriaLocalController = require('../controllers/categoriaLocalController');
 
 // rota root
@@ -126,6 +127,22 @@ router.post('/especie/addOne', async ( req, res ) => {
 });
 
 // ================= fim rotas especie =========================
+// ================= rotas categoria =========================
+
+router.get('/categoria', async ( req, res ) => {
+    categoriaController.getAll( req, res, client );
+})
+
+router.get('/categoria/searchOne', async ( req, res ) => {
+    categoriaController.searchOne( req, res, client );
+})
+
+// rota de adição de objetos
+router.post('/categoria/addOne', async ( req, res ) => {
+    categoriaController.addOne( req, res, client );
+});
+
+// ================= fim rotas categoria =========================
 // ================= rotas categoriaLocal =========================
 
 router.get('/categoriaLocal', async ( req, res ) => {
