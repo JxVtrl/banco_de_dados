@@ -5,6 +5,7 @@ const { client, connectDb } = require('../db/db');
 const rodoviaController = require('../controllers/rodoviaController');
 const tipoRegiaoController = require('../controllers/tipoRegiaoController');
 const classeTaxonomicaController = require('../controllers/classeTaxController');
+const situacaoFinalAnimalController = require('../controllers/situFinalAnimalController');
 
 // rota root
 router.get('/', ( req, res ) => {
@@ -71,6 +72,22 @@ router.get('/classeTaxonomica/searchOne', async ( req, res ) => {
 // rota de adição de objetos
 router.post('/classeTaxonomica/addOne', async ( req, res ) => {
     classeTaxonomicaController.addOne( req, res, client );
+});
+
+// ================= fim rotas classeTaxonomica =========================
+// ================= rotas situacaoFinalAnimal =========================
+
+router.get('/situacaoFinalAnimal', async ( req, res ) => {
+    situacaoFinalAnimalController.getAll( req, res, client );
+})
+
+router.get('/situacaoFinalAnimal/searchOne', async ( req, res ) => {
+    situacaoFinalAnimalController.searchOne( req, res, client );
+})
+
+// rota de adição de objetos
+router.post('/situacaoFinalAnimal/addOne', async ( req, res ) => {
+    situacaoFinalAnimalController.addOne( req, res, client );
 });
 
 module.exports = router;
