@@ -10,12 +10,15 @@ const tipoPavimentoController = require('../controllers/tipoPavimentoController'
 const especieController = require('../controllers/especieController');
 const categoriaController = require('../controllers/categoriaController');
 const categoriaLocalController = require('../controllers/categoriaLocalController');
+const ocorrenciaLocalController = require('../controllers/ocorrenciaLocalController');
+const ocorrenciaController = require('../controllers/ocorrenciaController');
 
 // rota root
 router.get('/', ( req, res ) => {
     connectDb( req, res, client );
 })
 
+// ================= fim rotas root =========================
 // ================= rotas uf =========================
 
 router.get('/uf', async ( req, res ) => {
@@ -26,7 +29,7 @@ router.get('/uf/searchOne', async ( req, res ) => {
     ufController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/uf/addOne', async ( req, res ) => {
     ufController.addOne( req, res, client );
 });
@@ -42,7 +45,7 @@ router.get('/rodovia/searchOne', async ( req, res ) => {
     rodoviaController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/rodovia/addOne', async ( req, res ) => {
     rodoviaController.addOne( req, res, client );
 });
@@ -57,7 +60,7 @@ router.get('/tipoRegiao/searchOne', async ( req, res ) => {
     tipoRegiaoController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/tipoRegiao/addOne', async ( req, res ) => {
     tipoRegiaoController.addOne( req, res, client );
 });
@@ -73,7 +76,7 @@ router.get('/classeTaxonomica/searchOne', async ( req, res ) => {
     classeTaxonomicaController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/classeTaxonomica/addOne', async ( req, res ) => {
     classeTaxonomicaController.addOne( req, res, client );
 });
@@ -89,7 +92,7 @@ router.get('/situacaoFinalAnimal/searchOne', async ( req, res ) => {
     situacaoFinalAnimalController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/situacaoFinalAnimal/addOne', async ( req, res ) => {
     situacaoFinalAnimalController.addOne( req, res, client );
 });
@@ -105,7 +108,7 @@ router.get('/tipoPavimento/searchOne', async ( req, res ) => {
     tipoPavimentoController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/tipoPavimento/addOne', async ( req, res ) => {
     tipoPavimentoController.addOne( req, res, client );
 });
@@ -121,7 +124,7 @@ router.get('/especie/searchOne', async ( req, res ) => {
     especieController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/especie/addOne', async ( req, res ) => {
     especieController.addOne( req, res, client );
 });
@@ -137,7 +140,7 @@ router.get('/categoria/searchOne', async ( req, res ) => {
     categoriaController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/categoria/addOne', async ( req, res ) => {
     categoriaController.addOne( req, res, client );
 });
@@ -153,9 +156,43 @@ router.get('/categoriaLocal/searchOne', async ( req, res ) => {
     categoriaLocalController.searchOne( req, res, client );
 })
 
-// rota de adição de objetos
+
 router.post('/categoriaLocal/addOne', async ( req, res ) => {
     categoriaLocalController.addOne( req, res, client );
 });
+
+// ================= fim rotas categoriaLocal =========================
+// ================= rotas ocorrenciaLocal =========================
+
+router.get('/ocorrenciaLocal', async ( req, res ) => {
+    ocorrenciaLocalController.getAll( req, res, client );
+})
+
+router.get('/ocorrenciaLocal/searchOne', async ( req, res ) => {
+    ocorrenciaLocalController.searchOne( req, res, client );
+})
+
+
+router.post('/ocorrenciaLocal/addOne', async ( req, res ) => {
+    ocorrenciaLocalController.addOne( req, res, client );
+});
+
+// ================= fim rotas ocorrenciaLocal =========================
+// ================= rotas ocorrencia =========================
+
+router.get('/ocorrencia', async ( req, res ) => {
+    ocorrenciaController.getAll( req, res, client );
+})
+
+router.get('/ocorrencia/searchOne', async ( req, res ) => {
+    ocorrenciaController.searchOne( req, res, client );
+})
+
+
+router.post('/ocorrencia/addOne', async ( req, res ) => {
+    ocorrenciaController.addOne( req, res, client );
+});
+
+// ================= fim rotas ocorrenciaLocal =========================
 
 module.exports = router;
