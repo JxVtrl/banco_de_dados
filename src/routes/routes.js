@@ -4,6 +4,7 @@ const ufController = require('../controllers/ufController');
 const { client, connectDb } = require('../db/db');
 const rodoviaController = require('../controllers/rodoviaController');
 const tipoRegiaoController = require('../controllers/tipoRegiaoController');
+const classeTaxonomicaController = require('../controllers/classeTaxController');
 
 // rota root
 router.get('/', ( req, res ) => {
@@ -55,4 +56,21 @@ router.get('/tipoRegiao/searchOne', async ( req, res ) => {
 router.post('/tipoRegiao/addOne', async ( req, res ) => {
     tipoRegiaoController.addOne( req, res, client );
 });
+
+// ================= fim rotas rodovias =========================
+// ================= rotas classeTaxonomica =========================
+
+router.get('/classeTaxonomica', async ( req, res ) => {
+    classeTaxonomicaController.getAll( req, res, client );
+})
+
+router.get('/classeTaxonomica/searchOne', async ( req, res ) => {
+    classeTaxonomicaController.searchOne( req, res, client );
+})
+
+// rota de adição de objetos
+router.post('/classeTaxonomica/addOne', async ( req, res ) => {
+    classeTaxonomicaController.addOne( req, res, client );
+});
+
 module.exports = router;
