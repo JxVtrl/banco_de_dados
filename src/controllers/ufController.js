@@ -22,9 +22,9 @@ class ufController {
 
     async searchOne( req, res, client ) {
         try {
-            const { nome } = req.body;
+            const { codUf } = req.body;
     
-            const uf = await client.db('test_db').collection('uf').findOne({ 'nome': nome });
+            const uf = await client.db('test_db').collection('uf').findOne({ 'codUf': codUf });
     
             if(!uf) {
                 console.log(`Objeto ${nome} não encontrado!`);
@@ -32,7 +32,7 @@ class ufController {
             } else {
                 console.log(uf);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${uf.nome} encontrado!`
                 )
             }
     

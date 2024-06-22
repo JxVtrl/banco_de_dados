@@ -1,4 +1,4 @@
-const categoria = require('../models/categoriaLocalModel');
+const categoria = require('../models/categoriaModel');
 
 class categoriaController {
     
@@ -24,7 +24,7 @@ class categoriaController {
         try {
             const { codCategoria } = req.body;
     
-            const categoria = await client.db('test_db').collection('categoria').findOne({ 'codCatLoc': codCategoria });
+            const categoria = await client.db('test_db').collection('categoria').findOne({ 'codCategoria': codCategoria });
     
             if(!categoria) {
                 console.log(`Objeto ${nome} não encontrado!`);

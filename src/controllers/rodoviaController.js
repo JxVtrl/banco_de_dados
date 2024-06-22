@@ -22,9 +22,9 @@ class rodoviaController {
 
     async searchOne( req, res, client ) {
         try {
-            const { nome } = req.body;
+            const { codRodovia } = req.body;
     
-            const rodovia = await client.db('test_db').collection('rodovia').findOne({ 'nome': nome });
+            const rodovia = await client.db('test_db').collection('rodovia').findOne({ 'codRodovia': codRodovia });
     
             if(!rodovia) {
                 console.log(`Objeto ${nome} não encontrado!`);

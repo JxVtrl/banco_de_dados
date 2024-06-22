@@ -22,9 +22,9 @@ class tipoRegiaoController {
 
     async searchOne( req, res, client ) {
         try {
-            const { nome } = req.body;
+            const { codTipoRegiao } = req.body;
     
-            const tipoRegiao = await client.db('test_db').collection('tipoRegiao').findOne({ 'nome': nome });
+            const tipoRegiao = await client.db('test_db').collection('tipoRegiao').findOne({ 'codTipoRegiao': codTipoRegiao });
     
             if(!tipoRegiao) {
                 console.log(`Objeto ${nome} não encontrado!`);

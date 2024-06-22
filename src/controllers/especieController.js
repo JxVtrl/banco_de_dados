@@ -1,6 +1,6 @@
 const especie = require('../models/especieModel');
 
-class especieModel {
+class especieController {
     
     async getAll( req, res, client ) {
         try {
@@ -9,9 +9,9 @@ class especieModel {
     
             console.log(contador);
             if(contador > 1) {
-                res.status(201).send(`${contador} classes taxonômicas catalogadas.`)
+                res.status(201).send(`${contador} espécies catalogadas.`)
             } else {
-                res.status(201).send(`${contador} classe taxonômica catalogada.`)
+                res.status(201).send(`${contador} espécie catalogada.`)
             }
     
         }
@@ -22,13 +22,13 @@ class especieModel {
 
     async searchOne( req, res, client ) {
         try {
-            const { nome } = req.body;
+            const { codEspecie } = req.body;
     
-            const especie = await client.db('test_db').collection('especie').findOne({ 'nome': nome });
+            const especie = await client.db('test_db').collection('especie').findOne({ 'codEspecie': codEspecie });
     
             if(!especie) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto ${especie.nomeComum} não encontrado!`);
+                res.status(404).send(`Objeto ${codEspecie} não encontrado!`)
             } else {
                 console.log(especie);
                 res.status(201).send(
@@ -48,7 +48,7 @@ class especieModel {
             const newEspecie = new especie({ codEspecie, nomeComum, codClasseTax });
             const response = await client.db('test_db').collection('especie').insertOne(newEspecie);
             console.log(response)
-            res.status(200).send(`Objeto adicionado ao banco de dados classe taxonômica!`);
+            res.status(200).send(`Objeto adicionado ao banco de dados especie!`);
         }
         catch {
             (err) => console.log(err);
@@ -56,4 +56,4 @@ class especieModel {
     }
 }
 
-module.exports = new classeTaxonomicaController();
+module.exports = new especieController();
