@@ -27,12 +27,12 @@ class ocorrenciaLocalController {
             const ocorrenciaLocal = await client.db('test_db').collection('ocorrenciaLocal').findOne({ 'codOcorrenciaLocal': codOcorrenciaLocal });
     
             if(!ocorrenciaLocal) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto ${codOcorrenciaLocal} não encontrado!`);
+                res.status(201).send(`Objeto ${codOcorrenciaLocal} não encontrado!`)
             } else {
                 console.log(ocorrenciaLocal);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${ocorrenciaLocal.codOcorrenciaLocal}, ${ocorrenciaLocal.codTipoRegiao} encontrado!`
                 )
             }
     

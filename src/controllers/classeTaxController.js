@@ -22,17 +22,17 @@ class classeTaxonomicaController {
 
     async searchOne( req, res, client ) {
         try {
-            const { nome } = req.body;
+            const { codClasseTaxonomica } = req.body;
     
-            const classeTaxonomica = await client.db('test_db').collection('classeTaxonomica').findOne({ 'nome': nome });
+            const classeTaxonomica = await client.db('test_db').collection('classeTaxonomica').findOne({ 'codClasseTaxonomica': codClasseTaxonomica });
     
             if(!classeTaxonomica) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto de identificador ${codClasseTaxonomica} não encontrado!`);
+                res.status(404).send(`Objeto de identificador ${codClasseTaxonomica} não encontrado!`)
             } else {
                 console.log(classeTaxonomica);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${classeTaxonomica.nome} encontrado!`
                 )
             }
     

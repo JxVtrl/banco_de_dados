@@ -27,12 +27,12 @@ class tipoRegiaoController {
             const tipoRegiao = await client.db('test_db').collection('tipoRegiao').findOne({ 'codTipoRegiao': codTipoRegiao });
     
             if(!tipoRegiao) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto de identificador ${codTipoRegiao} não encontrado!`);
+                res.status(404).send(`Objeto de identificador ${codTipoRegiao} não encontrado!`)
             } else {
                 console.log(tipoRegiao);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${tipoRegiao.nome} encontrado!`
                 )
             }
     

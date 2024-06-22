@@ -27,12 +27,12 @@ class rodoviaController {
             const rodovia = await client.db('test_db').collection('rodovia').findOne({ 'codRodovia': codRodovia });
     
             if(!rodovia) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto de id ${codRodovia} não encontrado!`);
+                res.status(404).send(`Objeto ${codRodovia} não encontrado!`)
             } else {
                 console.log(rodovia);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${rodovia.nome} encontrado!`
                 )
             }
     

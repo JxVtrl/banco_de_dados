@@ -28,12 +28,12 @@ class situacaoFinalAnimalController {
             const tipoPavimento = await client.db('test_db').collection('tipoPavimento').findOne({ 'codTipoPavimento': codTipoPavimento });
     
             if(!tipoPavimento) {
-                console.log(`Objeto ${codTipoPavimento} não encontrado!`);
-                res.status(404).send(`Objeto ${codTipoPavimento} não encontrado!`)
+                console.log(`Objeto de identificador ${codTipoPavimento} não encontrado!`);
+                res.status(404).send(`Objeto de identificador ${codTipoPavimento} não encontrado!`)
             } else {
                 console.log(tipoPavimento);
                 res.status(201).send(
-                    `Objeto ${tipoPavimento} encontrado!`
+                    `Objeto ${tipoPavimento.descricao} encontrado!`
                 )
             }
     

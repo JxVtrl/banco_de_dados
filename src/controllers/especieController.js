@@ -27,12 +27,12 @@ class especieController {
             const especie = await client.db('test_db').collection('especie').findOne({ 'codEspecie': codEspecie });
     
             if(!especie) {
-                console.log(`Objeto ${especie.nomeComum} não encontrado!`);
+                console.log(`Objeto ${codEspecie} não encontrado!`);
                 res.status(404).send(`Objeto ${codEspecie} não encontrado!`)
             } else {
                 console.log(especie);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${especie.nomeComum} encontrado!`
                 )
             }
     

@@ -27,12 +27,12 @@ class categoriaController {
             const categoria = await client.db('test_db').collection('categoria').findOne({ 'codCategoria': codCategoria });
     
             if(!categoria) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto ${codCategoria} não encontrado!`);
+                res.status(201).send(`Objeto ${codCategoria} não encontrado!`)
             } else {
                 console.log(categoria);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${categoria.nomeCategoria} encontrado!`
                 )
             }
     

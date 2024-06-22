@@ -28,12 +28,12 @@ class situacaoFinalAnimalController {
             const situacaoFinalAnimal = await client.db('test_db').collection('situacaoFinalAnimal').findOne({ 'codSituacao': codSituacao });
     
             if(!situacaoFinalAnimal) {
-                console.log(`Objeto ${situacaoFinalAnimal} não encontrado!`);
-                res.status(404).send(`Objeto ${situacaoFinalAnimal} não encontrado!`)
+                console.log(`Objeto de identificador ${codSituacao} não encontrado!`);
+                res.status(404).send(`Objeto de identificador ${codSituacao} não encontrado!`)
             } else {
                 console.log(situacaoFinalAnimal);
                 res.status(201).send(
-                    `Objeto ${situacaoFinalAnimal} encontrado!`
+                    `Objeto ${situacaoFinalAnimal.descricao} encontrado!`
                 )
             }
     

@@ -27,12 +27,12 @@ class categoriaLocalController {
             const categoriaLocal = await client.db('test_db').collection('categoriaLocal').findOne({ 'codCatLoc': codCatLoc });
     
             if(!categoriaLocal) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto ${codCatLoc} não encontrado!`);
+                res.status(201).send(`Objeto ${codCatLoc} não encontrado!`)
             } else {
                 console.log(categoriaLocal);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${categoriaLocal.nome} encontrado!`
                 )
             }
     

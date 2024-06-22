@@ -19,6 +19,7 @@ const connectDb = ( req, res, client ) => {
         res.status(200).send('Conectado ao banco de dados local com sucesso!');
     })
     .catch((err) => {
+        res.status(404).send('Houve um erro na conexão com o banco de dados.');
         console.error(err);
     })
 }

@@ -27,12 +27,12 @@ class ocorrenciaController {
             const ocorrencia = await client.db('test_db').collection('ocorrencia').findOne({ 'codOcorrencia': codOcorrencia });
     
             if(!ocorrencia) {
-                console.log(`Objeto ${nome} não encontrado!`);
-                res.status(201).send(`Objeto ${nome} não encontrado!`)
+                console.log(`Objeto ${codOcorrencia} não encontrado!`);
+                res.status(404).send(`Objeto ${codOcorrencia} não encontrado!`)
             } else {
                 console.log(ocorrencia);
                 res.status(201).send(
-                    `Objeto ${nome} encontrado!`
+                    `Objeto ${ocorrencia.codOcorrencia} encontrado!`
                 )
             }
     

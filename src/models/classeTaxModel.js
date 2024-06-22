@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
 const classeTaxonomicaSchema = new Schema({
-    codClasseTax: {
+    codClasseTaxonomica: {
         type: Number,
         required: true,
         unique: true
