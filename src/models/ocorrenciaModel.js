@@ -27,6 +27,22 @@ const ocorrenciaSchema = new Schema({
     velocidadeMaxima: {
         type: Number,
         required: true
+    },
+    codTipoPavimento: {
+        type: Number,
+        required: true,
+    },
+    codCatLoc: {
+        type: Number,
+        required: true,
+    },
+    codSituacao: {
+        type: Number,
+        required: true,
+    },
+    codRodovia: {
+        type: Number,
+        required: true,
     }
 }, { timestamps: true });
 

@@ -41,8 +41,6 @@ class tipoRegiaoController {
             const { codTipoRegiao, nome } = req.body;
             const newTipoRegiao = new tipoRegiao ({ codTipoRegiao , nome });
             const response = await client.db('test_db').collection('tipoRegiao').insertOne(newTipoRegiao);
-
-            // console.log(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
             console.log(response)
             res.status(200).send(`Objeto adicionado ao banco de dados tipoRegiao!`);
         }

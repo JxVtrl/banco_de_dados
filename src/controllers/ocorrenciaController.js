@@ -38,11 +38,35 @@ class ocorrenciaController {
 
     async addOne( req, res, client ) {
         try {
-            const { codOcorrencia, data, km, haviaAgua, numPistas, velocidadeMaxima } = req.body;
-            const newOcorrencia = new ocorrencia ({ codOcorrencia, data, km, haviaAgua, numPistas, velocidadeMaxima });
+            const { 
+                codOcorrencia, 
+                data, 
+                km, 
+                haviaAgua, 
+                numPistas, 
+                velocidadeMaxima, 
+                codTipoPavimento,
+                codCatLoc,
+                codSituacao,
+                codRodovia
+            
+            } = req.body; // definição dos valores dos campos
+            
+            const newOcorrencia = new ocorrencia ({ 
+                codOcorrencia, 
+                data, 
+                km, 
+                haviaAgua, 
+                numPistas, 
+                velocidadeMaxima, 
+                codTipoPavimento, 
+                codCatLoc,
+                codSituacao,
+                codRodovia
+             }); // criação de um novo objeto com estes valores
+             
             const response = await client.db('test_db').collection('ocorrencia').insertOne(newOcorrencia);
 
-            // console.log(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
             console.log(response)
             res.status(200).send(`Objeto adicionado ao banco de dados ocorrencia!`);
         }

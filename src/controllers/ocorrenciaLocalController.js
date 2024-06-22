@@ -41,8 +41,6 @@ class ocorrenciaLocalController {
             const { codOcorrenciaLocal, codTipoRegiao } = req.body;
             const newOcorrenciaLocal = new ocorrenciaLocal ({ codOcorrenciaLocal, codTipoRegiao });
             const response = await client.db('test_db').collection('ocorrenciaLocal').insertOne(newOcorrenciaLocal);
-
-            // console.log(`Objeto adicionado ao banco de dados Unidade Federativa (uf)!`);
             console.log(response)
             res.status(200).send(`Objeto adicionado ao banco de dados ocorrencia local!`);
         }
