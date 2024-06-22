@@ -5,15 +5,9 @@ class situacaoFinalAnimalController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('tipoPavimento').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} tipos de pavimentos catalogados.`)
-            } else {
-                res.status(201).send(`${contador} tipo de pavimento catalogado.`)
-            }
-    
+            const obj = await client.db('test_db').collection('tipoPavimento').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

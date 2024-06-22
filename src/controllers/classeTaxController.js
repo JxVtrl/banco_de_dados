@@ -5,15 +5,9 @@ class classeTaxonomicaController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('classeTaxonomica').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} classes taxonômicas catalogadas.`)
-            } else {
-                res.status(201).send(`${contador} classe taxonômica catalogada.`)
-            }
-    
+            const obj = await client.db('test_db').collection('classeTaxonomica').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

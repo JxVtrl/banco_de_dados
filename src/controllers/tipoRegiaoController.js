@@ -5,15 +5,9 @@ class tipoRegiaoController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('tipoRegiao').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} tipos de regiões catalogados.`)
-            } else {
-                res.status(201).send(`${contador} tipo de região catalogado.`)
-            }
-    
+            const obj = await client.db('test_db').collection('tipoRegiao').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

@@ -5,15 +5,9 @@ class ocorrenciaController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('ocorrencia').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} ocorrencias de atropelamento catalogadas.`)
-            } else {
-                res.status(201).send(`${contador} ocorrencia de atropelamento local catalogada.`)
-            }
-    
+            const obj = await client.db('test_db').collection('ocorrencia').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

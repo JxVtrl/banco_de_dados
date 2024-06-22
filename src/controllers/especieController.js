@@ -5,15 +5,9 @@ class especieController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('especie').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} espécies catalogadas.`)
-            } else {
-                res.status(201).send(`${contador} espécie catalogada.`)
-            }
-    
+            const obj = await client.db('test_db').collection('especie').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

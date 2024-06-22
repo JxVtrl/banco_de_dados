@@ -5,15 +5,9 @@ class ocorrenciaLocalController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('ocorrenciaLocal').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} ocorrencias locais catalogadas.`)
-            } else {
-                res.status(201).send(`${contador} ocorrencia local catalogada.`)
-            }
-    
+            const obj = await client.db('test_db').collection('categoriaLocal').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);

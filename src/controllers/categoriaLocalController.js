@@ -5,15 +5,9 @@ class categoriaLocalController {
     async getAll( req, res, client ) {
         try {
 
-            const contador = await client.db('test_db').collection('categoriaLocal').countDocuments();
-    
-            console.log(contador);
-            if(contador > 1) {
-                res.status(201).send(`${contador} categorias locais catalogadas.`)
-            } else {
-                res.status(201).send(`${contador} categoria local catalogada.`)
-            }
-    
+            const obj = await client.db('test_db').collection('categoriaLocal').find().toArray();
+
+            console.log(obj)
         }
         catch {
             (err) => console.log(err);
