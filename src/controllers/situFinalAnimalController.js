@@ -49,6 +49,19 @@ class situacaoFinalAnimalController {
             (err) => console.log(err);
         }
     }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codSituacao } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codSituacao': codSituacao });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codSituacao } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados situacao final animal.`);
+        }
+    }
 }
 
 module.exports = new situacaoFinalAnimalController();

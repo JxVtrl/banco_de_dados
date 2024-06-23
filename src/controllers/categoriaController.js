@@ -48,6 +48,19 @@ class categoriaController {
             (err) => console.log(err);
         }
     }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codCategoria } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codCategoria': codCategoria });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codCategoria } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados categoria.`);
+        }
+    }
 }
 
 module.exports = new categoriaController();

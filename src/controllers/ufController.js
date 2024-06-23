@@ -8,6 +8,8 @@ class ufController {
             const obj = await client.db('test_db').collection('uf').find().toArray();
 
             console.log(obj)
+
+            res.status(200).send('Objeto(s) encontrado(s)');
         }
         catch {
             (err) => console.log(err);
@@ -47,6 +49,19 @@ class ufController {
         catch {
             (err) => console.log(err);
             res.status(404).send(`Erro ao adicionar objeto ao banco de dados uf.`);
+        }
+    }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codUf } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codUf': codUf });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codUf } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados uf.`);
         }
     }
 }

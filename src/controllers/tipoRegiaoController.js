@@ -48,6 +48,19 @@ class tipoRegiaoController {
             (err) => console.log(err);
         }
     }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codTipoRegiao } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codTipoRegiao': codTipoRegiao });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codTipoRegiao } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados tipo regiao.`);
+        }
+    }
 }
 
 module.exports = new tipoRegiaoController();

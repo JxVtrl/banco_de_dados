@@ -36,6 +36,9 @@ router.post('/uf/addOne', async ( req, res ) => {
     ufController.addOne( req, res, client );
 });
 
+router.delete('/uf/deleteOne', async ( req, res ) => {
+    ufController.deleteOne( req, res, client );
+})
 // ================= fim rotas uf =========================
 // ================= rotas rodovia =========================
 

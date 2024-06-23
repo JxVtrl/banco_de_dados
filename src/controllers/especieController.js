@@ -48,6 +48,19 @@ class especieController {
             (err) => console.log(err);
         }
     }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codEspecie } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codEspecie': codEspecie });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codEspecie } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados especie.`);
+        }
+    }
 }
 
 module.exports = new especieController();

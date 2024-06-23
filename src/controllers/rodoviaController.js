@@ -48,6 +48,19 @@ class rodoviaController {
             (err) => console.log(err);
         }
     }
+    
+    async deleteOne( req, res, client ) {
+        try {
+            const { codRodovia } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codRodovia': codRodovia });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codRodovia } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados rodovia.`);
+        }
+    }
 }
 
 module.exports = new rodoviaController();

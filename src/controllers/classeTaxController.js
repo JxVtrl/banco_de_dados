@@ -48,6 +48,19 @@ class classeTaxonomicaController {
             (err) => console.log(err);
         }
     }
+
+    async deleteOne( req, res, client ) {
+        try {
+            const { codClasseTaxonomica } = req.body;
+            const response = await client.db('test_db').collection('codClasseTaxonomica').deleteOne({ 'codClasseTaxonomica': codClasseTaxonomica });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codClasseTaxonomica } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados classe taxonomica.`);
+        }
+    }
 }
 
 module.exports = new classeTaxonomicaController();

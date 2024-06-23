@@ -48,6 +48,19 @@ class ocorrenciaLocalController {
             (err) => console.log(err);
         }
     }
+    
+    async deleteOne( req, res, client ) {
+        try {
+            const { codOcorrenciaLocal } = req.body;
+            const response = await client.db('test_db').collection('uf').deleteOne({ 'codOcorrenciaLocal': codOcorrenciaLocal });
+            console.log(response);
+            res.status(201).send(`Objeto de identificador ${ codOcorrenciaLocal } deletado com sucesso`);
+        }
+        catch {
+            (err) => console.log(err);
+            res.status(404).send(`Erro ao deletar objeto do banco de dados ocorrencia local.`);
+        }
+    }
 }
 
 module.exports = new ocorrenciaLocalController();
