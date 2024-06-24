@@ -8,9 +8,13 @@ class situacaoFinalAnimalController {
             const obj = await client.collection('tipoPavimento').find().toArray();
 
             console.log(obj)
+            res.status(201).send('Resposta no console!');
+
+            return obj
         }
         catch {
             (err) => console.log(err);
+            res.status(404).send('Não encontrado!');
         }
     }
 

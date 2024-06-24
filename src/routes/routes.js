@@ -242,11 +242,11 @@ router.post('/categoriaLocal/addOne', async ( req, res ) => {
     categoriaLocalController.addOne( req, res, client );
 });
 
-router.delete('/categoria/deleteOne', async ( req, res ) => {
+router.delete('/categoriaLocal/deleteOne', async ( req, res ) => {
     categoriaLocalController.deleteOne( req, res, client );
 })
 
-router.put('/categoria/updateOne', async ( req, res ) => {
+router.put('/categoriaLocal/updateOne', async ( req, res ) => {
     categoriaLocalController.updateOne( req, res, client );
 })
 
@@ -269,11 +269,11 @@ router.post('/ocorrenciaLocal/addOne', async ( req, res ) => {
 });
 
 router.delete('/ocorrenciaLocal/deleteOne', async ( req, res ) => {
-    ocorrenciaLocal.deleteOne( req, res, client );
+    ocorrenciaLocalController.deleteOne( req, res, client );
 })
 
 router.put('/ocorrenciaLocal/updateOne', async ( req, res ) => {
-    ocorrenciaLocal.updateOne( req, res, client );
+    ocorrenciaLocalController.updateOne( req, res, client );
 })
 
 // ================= fim rotas ocorrenciaLocal =========================
@@ -295,11 +295,11 @@ router.post('/ocorrencia/addOne', async ( req, res ) => {
 });
 
 router.delete('/ocorrencia/deleteOne', async ( req, res ) => {
-    ocorrencia.deleteOne( req, res, client );
+    ocorrenciaController.deleteOne( req, res, client );
 })
 
 router.put('/ocorrencia/updateOne', async ( req, res ) => {
-    ocorrencia.updateOne( req, res, client );
+    ocorrenciaController.updateOne( req, res, client );
 })
 
 

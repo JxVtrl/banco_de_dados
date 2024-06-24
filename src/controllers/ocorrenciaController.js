@@ -5,12 +5,16 @@ class ocorrenciaController {
     async getAll( req, res, client ) {
         try {
 
-            const obj = await client.db('test_db').collection('ocorrencia').find().toArray();
+            const obj = await client.collection('ocorrencia').find().toArray();
 
             console.log(obj)
+            res.status(201).send('Resposta no console!');
+
+            return obj
         }
         catch {
             (err) => console.log(err);
+            res.status(404).send('Não encontrado!');
         }
     }
 
@@ -18,7 +22,7 @@ class ocorrenciaController {
         try {
             const { codOcorrencia } = req.body;
     
-            const ocorrencia = await client.db('test_db').collection('ocorrencia').findOne({ 'codOcorrencia': codOcorrencia });
+            const ocorrencia = await client.collection('ocorrencia').findOne({ 'codOcorrencia': codOcorrencia });
     
             if(!ocorrencia) {
                 console.log(`Objeto ${codOcorrencia} não encontrado!`);
@@ -65,7 +69,7 @@ class ocorrenciaController {
                 codRodovia
              }); // criação de um novo objeto com estes valores
              
-            const response = await client.db('test_db').collection('ocorrencia').insertOne(newOcorrencia);
+            const response = await client.collection('ocorrencia').insertOne(newOcorrencia);
 
             console.log(response)
             res.status(200).send(`Objeto adicionado ao banco de dados ocorrencia!`);

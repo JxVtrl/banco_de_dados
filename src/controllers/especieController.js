@@ -8,9 +8,13 @@ class especieController {
             const obj = await client.collection('especie').find().toArray();
 
             console.log(obj)
+            res.status(201).send('Resposta no console!');
+
+            return obj
         }
         catch {
             (err) => console.log(err);
+            res.status(201).send('Não encontrado!');
         }
     }
 
