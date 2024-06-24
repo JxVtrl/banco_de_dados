@@ -26,12 +26,14 @@ class categoriaController {
     
             if(!categoria) {
                 console.log(`Objeto ${codCategoria} não encontrado!`);
-                res.status(201).send(`Objeto ${codCategoria} não encontrado!`)
+                res.status(404).send(`Objeto ${codCategoria} não encontrado!`)
             } else {
                 console.log(categoria);
                 res.status(201).send(
                     `Objeto ${categoria.nomeCategoria} encontrado!`
                 )
+
+                return categoria;
             }
     
         }

@@ -32,6 +32,8 @@ class tipoRegiaoController {
                 res.status(201).send(
                     `Objeto ${tipoRegiao.nome} encontrado!`
                 )
+
+                return tipoRegiao;
             }
     
         }

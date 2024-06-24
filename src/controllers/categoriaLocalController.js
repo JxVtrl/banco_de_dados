@@ -26,12 +26,14 @@ class categoriaLocalController {
     
             if(!categoriaLocal) {
                 console.log(`Objeto ${codCatLoc} não encontrado!`);
-                res.status(201).send(`Objeto ${codCatLoc} não encontrado!`)
+                res.status(404).send(`Objeto ${codCatLoc} não encontrado!`)
             } else {
                 console.log(categoriaLocal);
                 res.status(201).send(
                     `Objeto ${categoriaLocal.nome} encontrado!`
                 )
+
+                return categoriaLocal;
             }
     
         }

@@ -32,6 +32,8 @@ class ocorrenciaController {
                 res.status(201).send(
                     `Objeto ${ocorrencia.codOcorrencia} encontrado!`
                 )
+
+                return ocorrencia;
             }
     
         }

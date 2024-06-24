@@ -30,11 +30,15 @@ class ufController {
             if(!uf) {
                 console.log(`Objeto ${codUf} não encontrado!`);
                 res.status(404).send(`Objeto ${codUf} não encontrado!`)
+
+                return uf;
             } else {
                 console.log(uf);
                 res.status(201).send(
                     `Objeto ${uf.nome} encontrado!`
                 )
+
+                return uf;
             }
     
         }

@@ -33,6 +33,8 @@ class situacaoFinalAnimalController {
                 res.status(201).send(
                     `Objeto ${tipoPavimento.descricao} encontrado!`
                 )
+
+                return tipoPavimento;
             }
     
         }
