@@ -8,6 +8,8 @@ class especieController {
             const obj = await client.db('test_db').collection('especie').find().toArray();
 
             console.log(obj)
+            
+            res.status(200).send(obj);
         }
         catch {
             (err) => console.log(err);
@@ -25,9 +27,7 @@ class especieController {
                 res.status(404).send(`Objeto ${codEspecie} não encontrado!`)
             } else {
                 console.log(especie);
-                res.status(201).send(
-                    `Objeto ${especie.nomeComum} encontrado!`
-                )
+                res.status(200).send(especie);
             }
     
         }
@@ -42,10 +42,12 @@ class especieController {
             const newEspecie = new especie({ codEspecie, nomeComum, codClasseTax });
             const response = await client.db('test_db').collection('especie').insertOne(newEspecie);
             console.log(response)
-            res.status(200).send(`Objeto adicionado ao banco de dados especie!`);
+            
+            res.status(201).send(`Objeto adicionado ao banco de dados Especie!`);
         }
         catch {
             (err) => console.log(err);
+            res.status(404).send(`Erro ao adicionar objeto ao banco de dados especie.`);
         }
     }
 
@@ -54,7 +56,7 @@ class especieController {
             const { codEspecie } = req.body;
             const response = await client.db('test_db').collection('uf').deleteOne({ 'codEspecie': codEspecie });
             console.log(response);
-            res.status(201).send(`Objeto de identificador ${ codEspecie } deletado com sucesso`);
+            res.status(200).send(`Objeto deletado do banco de dados especie.`);
         }
         catch {
             (err) => console.log(err);

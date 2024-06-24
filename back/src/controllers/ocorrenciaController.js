@@ -8,6 +8,8 @@ class ocorrenciaController {
             const obj = await client.db('test_db').collection('ocorrencia').find().toArray();
 
             console.log(obj)
+            
+            res.status(200).send(obj);
         }
         catch {
             (err) => console.log(err);
@@ -25,9 +27,7 @@ class ocorrenciaController {
                 res.status(404).send(`Objeto ${codOcorrencia} não encontrado!`)
             } else {
                 console.log(ocorrencia);
-                res.status(201).send(
-                    `Objeto ${ocorrencia.codOcorrencia} encontrado!`
-                )
+                res.status(200).send(ocorrencia);
             }
     
         }
@@ -68,7 +68,7 @@ class ocorrenciaController {
             const response = await client.db('test_db').collection('ocorrencia').insertOne(newOcorrencia);
 
             console.log(response)
-            res.status(200).send(`Objeto adicionado ao banco de dados ocorrencia!`);
+            res.status(201).send(`Objeto adicionado ao banco de dados Ocorrencia!`);
         }
         catch {
             (err) => console.log(err);
@@ -80,7 +80,7 @@ class ocorrenciaController {
             const { codOcorrencia } = req.body;
             const response = await client.db('test_db').collection('uf').deleteOne({ 'codOcorrencia': codOcorrencia });
             console.log(response);
-            res.status(201).send(`Objeto de identificador ${ codOcorrencia } deletado com sucesso`);
+            res.status(200).send(`Objeto deletado do banco de dados Ocorrencia!`);
         }
         catch {
             (err) => console.log(err);
