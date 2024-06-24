@@ -33,10 +33,9 @@ const EntityTable: React.FC<EntityTableProps> = ({
     event.preventDefault()
     try {
       const response = isUpdate
-        ? await axios.put(`${apiUrl}/${entity}/update/${updateId}`, formData, {
-            headers: {
-              "Content-Type": "application/json",
-            },
+        ? await axios.put(`${apiUrl}/${entity}/updateOne`, {
+            ...formData,
+            _id: updateId,
           })
         : await axios.post(`${apiUrl}/${entity}/addOne`, formData, {
             headers: {
@@ -60,6 +59,9 @@ const EntityTable: React.FC<EntityTableProps> = ({
     } catch (error) {
       console.error("Error submitting data:", error)
     }
+    
+    // refresh the page
+    window.location.reload()
   }
 
   const handleDelete = async (id: string, event: React.MouseEvent) => {
