@@ -32,6 +32,8 @@ class rodoviaController {
                 res.status(201).send(
                     `Objeto ${rodovia.nome} encontrado!`
                 )
+
+                return rodovia;
             }
     
         }

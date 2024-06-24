@@ -32,8 +32,8 @@ class especieController {
                 res.status(201).send(
                     `Objeto ${especie.nomeComum} encontrado!`
                 )
+                return especie;
             }
-    
         }
         catch {
             (err) => console.log(err);

@@ -32,6 +32,8 @@ class classeTaxonomicaController {
                 res.status(201).send(
                     `Objeto ${classeTaxonomica.nome} encontrado!`
                 )
+
+                return classeTaxonomica;
             }
     
         }

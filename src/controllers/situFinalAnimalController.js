@@ -33,6 +33,8 @@ class situacaoFinalAnimalController {
                 res.status(201).send(
                     `Objeto ${situacaoFinalAnimal.descricao} encontrado!`
                 )
+
+                return situacaoFinalAnimal;
             }
     
         }

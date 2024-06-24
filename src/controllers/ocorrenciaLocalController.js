@@ -26,12 +26,14 @@ class ocorrenciaLocalController {
     
             if(!ocorrenciaLocal) {
                 console.log(`Objeto ${codOcorrenciaLocal} não encontrado!`);
-                res.status(201).send(`Objeto ${codOcorrenciaLocal} não encontrado!`)
+                res.status(404).send(`Objeto ${codOcorrenciaLocal} não encontrado!`)
             } else {
                 console.log(ocorrenciaLocal);
                 res.status(201).send(
                     `Objeto ${ocorrenciaLocal.codOcorrenciaLocal}, ${ocorrenciaLocal.codTipoRegiao} encontrado!`
                 )
+
+                return ocorrenciaLocal;
             }
     
         }
