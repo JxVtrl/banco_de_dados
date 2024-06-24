@@ -8,9 +8,11 @@ class classeTaxonomicaController {
             const obj = await client.collection('classeTaxonomica').find().toArray();
 
             console.log(obj)
+            res.status(201).send('Resposta no console!');
         }
         catch {
             (err) => console.log(err);
+            res.status(404).send('Resposta no console!');
         }
     }
 

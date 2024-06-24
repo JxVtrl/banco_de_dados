@@ -8,9 +8,11 @@ class categoriaController {
             const obj = await client.collection('categoria').find().toArray();
 
             console.log(obj)
+            res.status(201).send('Resposta no console!');
         }
         catch {
             (err) => console.log(err);
+            res.status(404).send('Não encontrado!');
         }
     }
 

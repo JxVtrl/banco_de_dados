@@ -12,7 +12,7 @@ class rodoviaController {
         }
         catch {
             (err) => console.log(err);
-            res.status(404).send('Erro!');
+            res.status(404).send('Não encontrado!');
         }
     }
 
