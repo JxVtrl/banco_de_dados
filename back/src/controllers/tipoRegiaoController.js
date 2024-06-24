@@ -63,11 +63,11 @@ class tipoRegiaoController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codTipoRegiao } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("uf")
-        .deleteOne({ codTipoRegiao: codTipoRegiao })
+        .collection("tipoRegiao")
+        .deleteOne({ _id })
       console.log(response)
       res.status(200).send(`Objeto deletado do banco de dados tipo regiao.`)
     } catch {

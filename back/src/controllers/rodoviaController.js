@@ -58,11 +58,11 @@ class rodoviaController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codRodovia } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("uf")
-        .deleteOne({ codRodovia: codRodovia })
+        .collection("rodovia")
+        .deleteOne({ _id })
       console.log(response)
       res.status(200).send(`Objeto deletado do banco de dados rodovia.`)
     } catch {

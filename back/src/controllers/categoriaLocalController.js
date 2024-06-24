@@ -63,11 +63,11 @@ class categoriaLocalController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codCatLoc } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("codCatLoc")
-        .deleteOne({ codCatLoc: codCatLoc })
+        .collection("categoriaLocal")
+        .deleteOne({ _id })
       console.log(response)
       res.status(200).send(`Objeto deletado do banco de dados Categoria Local!`)
     } catch {
@@ -75,6 +75,28 @@ class categoriaLocalController {
       res
         .status(404)
         .send(`Erro ao deletar objeto do banco de dados codCatLoc.`)
+    }
+  }
+
+  async updateOne(req, res, client) {
+    try {
+      const { codCatLoc, nome, codUf, codEspecie, codCategoria } = req.body
+      const response = await client
+        .db("test_db")
+        .collection("categoriaLocal")
+        .updateOne(
+          { codCatLoc: codCatLoc },
+          { $set: { nome, codUf, codEspecie, codCategoria } }
+        )
+      console.log(response)
+      res
+        .status(200)
+        .send(`Objeto atualizado no banco de dados Categoria Local!`)
+    } catch {
+      ;(err) => console.log(err)
+      res
+        .status(404)
+        .send(`Erro ao atualizar objeto do banco de dados Categoria Local.`)
     }
   }
 }

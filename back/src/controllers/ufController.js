@@ -54,18 +54,39 @@ class ufController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codUf } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
         .collection("uf")
-        .deleteOne({ codUf: codUf })
+        .deleteOne({ _id: _id })
+
       console.log(response)
+
       res
-        .status(201)
-        .send(`Objeto de identificador ${codUf} deletado com sucesso`)
+        .status(200)
+        .send(`Objeto deletado do banco de dados Unidade Federativa (uf)!`)
     } catch {
       ;(err) => console.log(err)
       res.status(404).send(`Erro ao deletar objeto do banco de dados uf.`)
+    }
+  }
+
+  async updateOne(req, res, client) {
+    try {
+      const { _id, codUf, nome } = req.body
+      const response = await client
+        .db("test_db")
+        .collection("uf")
+        .updateOne({ _id: _id }, { $set: { codUf: codUf, nome: nome } })
+
+      console.log(response)
+
+      res
+        .status(200)
+        .send(`Objeto atualizado no banco de dados Unidade Federativa (uf)!`)
+    } catch {
+      ;(err) => console.log(err)
+      res.status(404).send(`Erro ao atualizar objeto no banco de dados uf.`)
     }
   }
 }

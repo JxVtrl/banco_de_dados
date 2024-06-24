@@ -60,11 +60,11 @@ class classeTaxonomicaController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codClasseTaxonomica } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("codClasseTaxonomica")
-        .deleteOne({ codClasseTaxonomica: codClasseTaxonomica })
+        .collection("classeTaxonomica")
+        .deleteOne({ _id })
       console.log(response)
       res
         .status(201)

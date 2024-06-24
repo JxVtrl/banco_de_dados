@@ -60,11 +60,11 @@ class ocorrenciaLocalController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codOcorrenciaLocal } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("uf")
-        .deleteOne({ codOcorrenciaLocal: codOcorrenciaLocal })
+        .collection("ocorrenciaLocal")
+        .deleteOne({ _id })
       console.log(response)
       res
         .status(200)

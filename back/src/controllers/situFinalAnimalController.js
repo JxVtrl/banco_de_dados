@@ -65,11 +65,11 @@ class situacaoFinalAnimalController {
 
   async deleteOne(req, res, client) {
     try {
-      const { codSituacao } = req.body
+      const { _id } = req.body
       const response = await client
         .db("test_db")
-        .collection("uf")
-        .deleteOne({ codSituacao: codSituacao })
+        .collection("situacaoFinalAnimal")
+        .deleteOne({ _id })
       console.log(response)
       res
         .status(200)

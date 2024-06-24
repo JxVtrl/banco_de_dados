@@ -1,5 +1,6 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import axios from "axios"
+import React, { useState, useEffect } from "react"
+import { fields } from "../data/fields"
 
 interface EntityTableProps {
   entity: string
@@ -14,98 +15,82 @@ const EntityTable: React.FC<EntityTableProps> = ({
   apiUrl,
   fetchData,
 }) => {
-  const [formData, setFormData] = useState<{ [key: string]: string | boolean }>({});
+  const [formData, setFormData] = useState<{ [key: string]: string | boolean }>(
+    {}
+  )
+  const [isUpdate, setIsUpdate] = useState(false)
+  const [updateId, setUpdateId] = useState<string | null>(null)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value, type, checked } = event.target
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+      [name]: type === "checkbox" ? checked : value,
+    }))
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
     try {
-      const response = await axios.post(`${apiUrl}/${entity}/addOne`, formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = isUpdate
+        ? await axios.put(`${apiUrl}/${entity}/update/${updateId}`, formData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+        : await axios.post(`${apiUrl}/${entity}/addOne`, formData, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+
       if (response.status === 200) {
-        alert('Dados adicionados com sucesso!');
-        fetchData();
-        setFormData({});
+        alert(
+          isUpdate
+            ? "Dados atualizados com sucesso!"
+            : "Dados adicionados com sucesso!"
+        )
+        fetchData()
+        setFormData({})
+        setIsUpdate(false)
+        setUpdateId(null)
       } else {
-        alert('Erro ao adicionar dados.');
+        alert("Erro ao adicionar/atualizar dados.")
       }
     } catch (error) {
-      console.error('Error submitting data:', error);
+      console.error("Error submitting data:", error)
     }
-  };
+  }
+
+  const handleDelete = async (id: string, event: React.MouseEvent) => {
+    event.stopPropagation(); // Para evitar a propagação do clique na linha
+    try {
+      const response = await axios.delete(`${apiUrl}/${entity}/deleteOne`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: { _id: id },
+      })
+      if (response.status === 200) {
+        alert("Dados excluídos com sucesso!")
+        fetchData()
+      } else {
+        alert("Erro ao excluir dados.")
+      }
+    } catch (error) {
+      console.error("Error deleting data:", error)
+    }
+  }
+
+  const handleRowClick = (item: any) => {
+    setFormData(item)
+    setIsUpdate(true)
+    setUpdateId(item._id)
+  }
 
   const getFields = () => {
-    const fields: { [key: string]: { name: string; label: string; type: string }[] } = {
-      uf: [
-        { name: 'codUf', label: 'Código UF', type: 'number' },
-        { name: 'nome', label: 'Nome', type: 'text' },
-      ],
-      rodovia: [
-        { name: 'codRodovia', label: 'Código Rodovia', type: 'number' },
-        { name: 'nome', label: 'Nome', type: 'text' },
-      ],
-      tipoRegiao: [
-        { name: 'codTipoRegiao', label: 'Código Tipo Região', type: 'number' },
-        { name: 'nome', label: 'Nome', type: 'text' },
-      ],
-      classeTaxonomica: [
-        { name: 'codClasseTaxonomica', label: 'Código Classe Taxonômica', type: 'number' },
-        { name: 'nome', label: 'Nome', type: 'text' },
-      ],
-      situacaoFinalAnimal: [
-        { name: 'codSituacao', label: 'Código Situação Final Animal', type: 'number' },
-        { name: 'descricao', label: 'Descrição', type: 'text' },
-      ],
-      tipoPavimento: [
-        { name: 'codTipoPavimento', label: 'Código Tipo Pavimento', type: 'number' },
-        { name: 'descricao', label: 'Descrição', type: 'text' },
-      ],
-      especie: [
-        { name: 'codEspecie', label: 'Código Espécie', type: 'number' },
-        { name: 'nomeComum', label: 'Nome Comum', type: 'text' },
-        { name: 'codClasseTax', label: 'Código Classe Taxonômica', type: 'number' },
-      ],
-      categoria: [
-        { name: 'codCategoria', label: 'Código Categoria', type: 'number' },
-        { name: 'nomeCategoria', label: 'Nome Categoria', type: 'text' },
-      ],
-      categoriaLocal: [
-        { name: 'codCatLoc', label: 'Código Categoria Local', type: 'number' },
-        { name: 'nome', label: 'Nome', type: 'text' },
-        { name: 'codUf', label: 'Código UF', type: 'number' },
-        { name: 'codEspecie', label: 'Código Espécie', type: 'number' },
-        { name: 'codCategoria', label: 'Código Categoria', type: 'number' },
-      ],
-      ocorrenciaLocal: [
-        { name: 'codOcorrenciaLocal', label: 'Código Ocorrência Local', type: 'number' },
-        { name: 'codTipoRegiao', label: 'Código Tipo Região', type: 'number' },
-      ],
-      ocorrencia: [
-        { name: 'codOcorrencia', label: 'Código Ocorrência', type: 'number' },
-        { name: 'data', label: 'Data', type: 'date' },
-        { name: 'km', label: 'KM', type: 'number' },
-        { name: 'haviaAgua', label: 'Havia Água', type: 'checkbox' },
-        { name: 'numPistas', label: 'Número de Pistas', type: 'number' },
-        { name: 'velocidadeMaxima', label: 'Velocidade Máxima', type: 'number' },
-        { name: 'codTipoPavimento', label: 'Código Tipo Pavimento', type: 'number' },
-        { name: 'codCatLoc', label: 'Código Categoria Local', type: 'number' },
-        { name: 'codSituacao', label: 'Código Situação', type: 'number' },
-        { name: 'codRodovia', label: 'Código Rodovia', type: 'number' },
-      ],
-    };
-
-    return fields[entity] || [];
-  };
+    return fields[entity] || []
+  }
 
   return (
     <div>
@@ -118,13 +103,13 @@ const EntityTable: React.FC<EntityTableProps> = ({
                 type={field.type}
                 name={field.name}
                 id={field.name}
-                value={formData[field.name] || '' as any}
+                value={(formData[field.name] as any) || ("" as any)}
                 onChange={handleChange}
                 required
               />
             </div>
           ))}
-          <button type="submit">Adicionar</button>
+          <button type="submit">{isUpdate ? "Atualizar" : "Adicionar"}</button>
         </form>
       </div>
       <div id="data-display">
@@ -137,14 +122,19 @@ const EntityTable: React.FC<EntityTableProps> = ({
                 {Object.keys(data[0]).map((key) => (
                   <th key={key}>{key}</th>
                 ))}
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {data.map((item, index) => (
-                <tr key={index}>
+                <tr key={index} onClick={() => handleRowClick(item)}>
                   {Object.values(item).map((value, idx) => (
                     <td key={idx}>{value as any}</td>
                   ))}
+                  <td>
+                    <button onClick={(event) => handleDelete(item._id, event)}>Delete</button>
+                    <button onClick={(event) => { event.stopPropagation(); handleRowClick(item); }}>Edit</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -152,7 +142,7 @@ const EntityTable: React.FC<EntityTableProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EntityTable;
+export default EntityTable
