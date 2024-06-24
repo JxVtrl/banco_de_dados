@@ -11,7 +11,9 @@ class ufController {
 
             console.log(obj)
 
-            res.status(201).send('Resposta no console!');        
+            res.status(201).send('Resposta no console!');
+            
+            return obj
         }
         catch {
             (err) => console.log(err);
